@@ -620,6 +620,8 @@ This project is released under **Educational Research License** with the followi
 
 ---
 
-**"Poke around and find out!"** - *Experiment with different threshold values, time windows, and attack patterns to understand the relationship between attack intensity and mitigation effectiveness.*
+**"Poke around and find out!"** 
+
+**⭐ Star this repository if it helped your cybersecurity learning journey!**
 
 </div>

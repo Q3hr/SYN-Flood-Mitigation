@@ -218,5 +218,3 @@ This project demonstrates:
 > **"Poke around and find out!"** - Experiment with different threshold values, time windows, and attack patterns to understand the relationship between attack intensity and mitigation effectiveness.
 
 ---
-
-**⚡ Happy Learning & Stay Secure!** 🔒

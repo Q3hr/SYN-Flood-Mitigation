@@ -1,144 +1,222 @@
-# SYN-Flood-Mitigation
-This 3rd Semester Project was created to simulate a SYN Flood (DoS/DDoS) on a Server and it how it is mitigated via the Windows Firewall. It also contains email alerts, attack logs and blocked IP logs.
+# SYN Flood Mitigation 🛡️
 
-**Author**: Ibrar Ul Hassan Shami
+A comprehensive 3rd semester cybersecurity project that demonstrates **SYN Flood (DoS/DDoS) attack simulation** and **mitigation techniques** using Windows Firewall. This project includes real-time email alerts, detailed attack logging, and automated IP blocking capabilities.
+
+## 📋 Project Overview
+
+This project simulates a realistic SYN Flood attack scenario between two networked computers and demonstrates how to effectively mitigate such attacks using built-in Windows security features. The system provides comprehensive monitoring, logging, and notification capabilities for network security analysis.
+
+**Author:** Ibrar Ul Hassan Shami
 
 ## ⚠️ Important Notes
 
-1. **All commands must be run in Command Prompt (CMD) with Administrator privileges.**
-2. **Ignore all test files.**
-3. Only these files are important:
-   - `TCP Getting Interface.py`
-   - `TCP Server Script.py`
-   - `TCP Server Check.py`
-   - `TCP Flood Script.py`
-   - `TCP Mitigation Script.py`
+- **All commands must be executed in Command Prompt (CMD) with Administrator privileges**
+- Test files should be ignored during deployment
+- Only the core script files listed below are required for the simulation
 
----
+## 📁 Core Project Files
 
-## 🖥️ Deployment Guide
+The following files are essential for the project execution:
 
-### Step 1: Setup
+1. **`TCP Getting Interface.py`** - Network interface discovery utility
+2. **`TCP Server Script.py`** - Main server application
+3. **`TCP Server Check.py`** - Server connectivity verification
+4. **`TCP Flood Script.py`** - SYN flood attack simulator
+5. **`TCP Mitigation Script.py`** - Attack detection and mitigation system
 
-- Acquire **two PCs** on the **same internet connection** (one will act as **Server**, the other as **Attacker**).
+## 🚀 Deployment Guide
 
----
+### Prerequisites
 
-### Step 2: Allow Python through Windows Firewall
+- **Two Windows PCs** connected to the same network
+- **Python 3.x** installed on both machines
+- **Administrator access** on both systems
+- **Gmail account** with App Password enabled (for email notifications)
 
-Run the following commands on **both PCs** (adjust the path to your installed Python version if necessary):
+### Step 1: Network Configuration
+
+Execute the following commands on **both PCs** in Administrator CMD:
+
+#### 1.1 Allow Python Network Access
 
 ```cmd
 netsh advfirewall firewall add rule name="AllowPythonPrivate" dir=in action=allow program="C:\Users\DELL\AppData\Local\Programs\Python\Python313\python.exe" profile=private
 
-Step 3: Enable ICMP (Ping) Communication
-Allow ICMP traffic on both PCs:
+netsh advfirewall firewall add rule name="AllowPythonPublic" dir=in action=allow program="C:\Users\DELL\AppData\Local\Programs\Python\Python313\python.exe" profile=public
+```
 
-cmd
-Copy
-Edit
+> **Note:** Adjust the Python path according to your installation directory
+
+#### 1.2 Enable ICMP Communication
+
+```cmd
 netsh advfirewall firewall add rule name="Allow ICMPv4-In" protocol=icmpv4 dir=in action=allow
-Test communication:
+```
 
-c
-Copy
-Edit
-Attacker_PC: ping <Server_PC_IP>
-Server_PC: ping <Attacker_PC_IP>
-You can get the IP address by running ipconfig and checking the IPv4 Address.
+#### 1.3 Test Network Connectivity
 
-Step 4: Allow Custom TCP Port
-Allow TCP traffic through port 9999 on both machines:
+Verify that both PCs can communicate:
 
-cmd
-Copy
-Edit
+```cmd
+# From Attacker PC
+ping [Server_PC_IP_Address]
+
+# From Server PC  
+ping [Attacker_PC_IP_Address]
+```
+
+**To find your IP address:** Run `ipconfig` and note the **IPv4 Address**
+
+### Step 2: Port Configuration
+
+Allow TCP traffic through the custom simulation port on **both PCs**:
+
+```cmd
 netsh advfirewall firewall add rule name="Allow TCP Port 9999" protocol=TCP dir=in localport=9999 action=allow
-Step 5: Code Configuration
-💻 Server PC Scripts:
-TCP Getting Interface.py
+```
 
-TCP Server Script.py
+### Step 3: Script Configuration
 
-TCP Mitigation Script.py
+#### 3.1 File Distribution
 
-🧨 Attacker PC Scripts:
-TCP Server Check.py
+**Server PC Scripts:**
+- `TCP Getting Interface.py`
+- `TCP Server Script.py`
+- `TCP Mitigation Script.py`
 
-TCP Flood Script.py
+**Attacker PC Scripts:**
+- `TCP Server Check.py`
+- `TCP Flood Script.py`
 
-🔧 Modify the following lines:
-TCP Server Script.py
+#### 3.2 IP Address Configuration
 
-Line 7 → Enter Server PC's IP
+Make the following modifications to the script files:
 
-TCP Server Check.py
+**`TCP Server Script.py`** (Line 7)
+```python
+# Enter the Server's IP address
+server_ip = "YOUR_SERVER_IP_HERE"
+```
 
-Line 3 → Enter Server PC's IP
+**`TCP Server Check.py`** (Line 3)
+```python
+# Enter the Server's IP address
+target_ip = "YOUR_SERVER_IP_HERE"
+```
 
-TCP Flood Script.py
+**`TCP Flood Script.py`**
+```python
+# Line 5: Enter the Server's IP address
+target_ip = "YOUR_SERVER_IP_HERE"
 
-Line 5 → Enter Server PC's IP
+# Line 16: Enter the Attacker's IP address
+source_ip = "YOUR_ATTACKER_IP_HERE"
+```
 
-Line 16 → Enter Attacker PC's IP
+### Step 4: Email Configuration
 
-Step 6: Configure Email Alerts (Optional but Recommended)
-In PowerShell (Admin) on Server PC, set environment variables:
+#### 4.1 Set Environment Variables
 
-powershell
-Copy
-Edit
-$env:SENDER_EMAIL="sender@gmail.com"
-$env:RECEIVER_EMAIL="receiver@gmail.com"
+Open **PowerShell as Administrator** on the Server PC and configure email credentials:
+
+```powershell
+$env:SENDER_EMAIL="your_sender@gmail.com"
+$env:RECEIVER_EMAIL="your_receiver@gmail.com"
 $env:EMAIL_PASSWORD="xxxx xxxx xxxx xxxx"
-Verify the variables:
+```
 
-powershell
-Copy
-Edit
+> **📧 Gmail App Password Setup:** Search "Gmail App Password setup" on YouTube for detailed instructions
+
+#### 4.2 Verify Email Configuration
+
+```powershell
 echo $env:SENDER_EMAIL
 echo $env:RECEIVER_EMAIL
 echo $env:EMAIL_PASSWORD
-Now launch VS Code:
+```
 
-powershell
-Copy
-Edit
+#### 4.3 Launch Development Environment
+
+```powershell
 code .
-Step 7: Running the Project
-On Server PC:
-cmd
-Copy
-Edit
-python "TCP Getting Interface.py"
-Note or remember the name of the active interface.
+```
 
-c
-Copy
-Edit
-python "TCP Server Script.py"
-On Attacker PC:
-cmd
-Copy
-Edit
-python "TCP Server Check.py"
-Back to Server PC:
-cmd
-Copy
-Edit
-python "TCP Mitigation Script.py"
-Enter appropriate values:
+## 🎯 Execution Sequence
 
-Example: Threshold: 3, Time: 10, then select your noted interface.
+Follow this **exact order** for proper simulation execution. **Run each command in a separate terminal window:**
 
-Finally, on Attacker PC:
-cmd
-Copy
-Edit
-python "TCP Flood Script.py"
-✅ Result
-Watch the magic happen! The server should detect the SYN Flood and take mitigation actions (like blocking the attacker's IP and sending alerts via email).
+### Phase 1: Server Setup
 
-🔍 Final Note
-Poke around and find out!
-Explore the code, tweak the thresholds, and understand the working of real-time TCP flood detection.
+**On Server PC:**
+
+1. **Discover Network Interface**
+   ```bash
+   python "TCP Getting Interface.py"
+   ```
+   📝 **Note down the network interface name** - you'll need this later!
+
+2. **Start the Server**
+   ```bash
+   python "TCP Server Script.py"
+   ```
+
+### Phase 2: Connectivity Verification
+
+**On Attacker PC:**
+
+3. **Verify Server Connection**
+   ```bash
+   python "TCP Server Check.py"
+   ```
+
+### Phase 3: Mitigation System
+
+**On Server PC:**
+
+4. **Initialize Mitigation System**
+   ```bash
+   python "TCP Mitigation Script.py"
+   ```
+   
+   **Configuration Example:**
+   - **Threshold:** `3` (connections before blocking)
+   - **Time Window:** `10` (seconds)
+   - **Interface:** Select the interface noted in Step 1
+
+### Phase 4: Attack Simulation
+
+**On Attacker PC:**
+
+5. **Launch SYN Flood Attack**
+   ```bash
+   python "TCP Flood Script.py"
+   ```
+
+## 🎉 Results
+
+Once all scripts are running, you'll observe:
+
+- **Real-time attack detection** on the server
+- **Automatic IP blocking** via Windows Firewall
+- **Email notifications** sent to configured recipients
+- **Detailed logging** of attack patterns and mitigation actions
+- **Live monitoring** of network traffic and blocked connections
+
+## 🔍 Learning Outcomes
+
+This project demonstrates:
+
+- **Network Security Fundamentals**
+- **DoS/DDoS Attack Mechanics**
+- **Windows Firewall Integration**
+- **Real-time Threat Detection**
+- **Automated Response Systems**
+- **Network Traffic Analysis**
+
+## 🎓 Educational Note
+
+> **"Poke around and find out!"** - Experiment with different threshold values, time windows, and attack patterns to understand the relationship between attack intensity and mitigation effectiveness.
+
+---
+
+**⚡ Happy Learning & Stay Secure!** 🔒

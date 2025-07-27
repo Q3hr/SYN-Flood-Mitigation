@@ -1,6 +1,6 @@
 # SYN Flood Mitigation 🛡️
 
-A comprehensive 3rd semester cybersecurity project that demonstrates **SYN Flood (DoS/DDoS) attack simulation** and **mitigation techniques** using Windows Firewall. This project includes real-time email alerts, detailed attack logging, and automated IP blocking capabilities.
+A comprehensive 3rd semester cybersecurity project that demonstrates **SYN Flood (DoS/DDoS) attack simulation** and **mitigation techniques** using Windows Firewall. This project includes real-time email alerts, detailed attack logging, automated IP blocking capabilities and graphical representation.
 
 ## 📋 Project Overview
 

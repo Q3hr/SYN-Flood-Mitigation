@@ -19,6 +19,8 @@
 
 ## 🏆 Achievement: Techon 2nd Position Award 
 
+<img src="https://github.com/Q3hr/SYN-Flood-Mitigation/raw/main/Techon_2nd_Position_Award.jpg" width="300"/>
+
 ![Techon 2nd Position Award](https://github.com/Q3hr/SYN-Flood-Mitigation/raw/main/Techon_2nd_Position_Award.jpg)
 
 ---

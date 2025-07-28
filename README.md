@@ -614,7 +614,8 @@ This project is released under **Educational Research License** with the followi
 *Enhancing network defense capabilities through hands-on technical research*
 
 [![University](https://img.shields.io/badge/Institution-University_of_Wah-blue.svg)](#)
-[![Department](https://img.shields.io/badge/Department-Cybersecurity-red.svg)](#)
+[![Department](https://img.shields.io/badge/Department-Cybersecurity-purple.svg)](#)
+[![Course](https://img.shields.io/badge/Course-Information_Security-teal.svg)](#)
 [![Semester](https://img.shields.io/badge/Semester-3rd-green.svg)](#)
 [![Project](https://img.shields.io/badge/Type-Research_Project-orange.svg)](#)
 
